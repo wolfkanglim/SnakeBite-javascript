@@ -3,3 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+ #btn {
+        margin-left: 40px;
+        border: 1px solid #333;
+        font-size: 16px;
+        padding: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      #canvas {
+        border: 3px solid black;
+      }
