@@ -41,7 +41,8 @@ function game() {
 
       //apple
       let appleImage = new Image();
-      appleImage.src = "/imagesvs/apple8.png";
+      //appleImage.src = "/imagesvs/apple8.png";
+      appleImage.src = "https://user-images.githubusercontent.com/74490365/146242797-85133336-e749-4dac-bee7-18dac9698c29.png";
       let appleX = (appleY = 20);
 
       //draw every x times call function update
