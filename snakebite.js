@@ -26,9 +26,9 @@ function game() {
       }
 
       //audios
-      const bite = new Audio("/audios/snakebite.wav");
-      const dead = new Audio("/audios/snakedead.wav");
-      const run = new Audio("/audios/ping.mp3");
+      const bite = new Audio("./audios/snakebite.wav");
+      const dead = new Audio("./audios/snakedead.wav");
+      const run = new Audio("./audios/ping.mp3");
 
       let gridSize = 30;
       let tileSize = 16;
