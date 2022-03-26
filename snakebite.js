@@ -1,98 +1,91 @@
 const  canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const startBtn = document.getElementById('startBtn');
+
+let gameOver = false;
+let speed;
 
 function game() {
-        let x = 5;
-        setInterval(update, 1000 / x);
-      }
-      game();
+  if(!gameOver){
+       speed = 4;
+        setInterval(update, 1000 / speed);
+   }        
+}
+game();
 
-      function Audio(src) {
-        this.Audio = document.createElement("audio");
-        this.Audio.src = src;
-        this.Audio.setAttribute("preload", "auto");
-        this.Audio.setAttribute("controls", "none");
-        this.Audio.style.display = "none";
-        this.Audio.volume = 0.1;
+function Audio(src) {
+  this.Audio = document.createElement("audio");
+  this.Audio.src = src;
+  this.Audio.setAttribute("preload", "auto");
+  this.Audio.setAttribute("controls", "none");
+  this.Audio.style.display = "none";
+  this.Audio.volume = 0.1;
 
-        document.body.appendChild(this.Audio);
+  document.body.appendChild(this.Audio);
 
-        this.play = function () {
-          this.Audio.play();
-        };
-        this.stop = function () {
-          this.Audio.pause();
-        };
-      }
+  this.play = function () {
+    this.Audio.play();
+  };
+  this.stop = function () {
+    this.Audio.pause();
+  };
+}
 
-      //audios
-      const bite = new Audio("./audios/snakebite.wav");
-      const dead = new Audio("./audios/snakedead.wav");
-      const run = new Audio("./audios/ping.mp3");
-
+//////audios
+      const biteSound = new Audio("./audios/snakebite.wav");
+      const collisionSound = new Audio("./audios/snakedead.wav");
+      const bgmSound = new Audio("./audios/snakebgm.wav");
+      
       let gridSize = 30;
       let tileSize = 16;
-      let nextX = (nextY = 0);
+      let nextX = 0;
+      let nextY = 0;
       // snakeSS
       let defaultTailSize = 3;
       let tailSize = defaultTailSize;
       let snakeTrail = [];
-      let snakeX = (snakeY = 10);
+      let snakeX = 10;
+      let snakeY = 10;
 
       //apple
       let appleImage = new Image();
-      //appleImage.src = "/imagesvs/apple8.png";
-      appleImage.src = "https://user-images.githubusercontent.com/74490365/146242797-85133336-e749-4dac-bee7-18dac9698c29.png";
-      let appleX = (appleY = 20);
+      appleImage.src = "./png/apple8.png";
+      let appleX = 20;
+      let appleY = 20;
 
       //draw every x times call function update
       let score = 0;
-      function update() {
-        snakeX += nextX;
-        snakeY += nextY;
+    function update() {
+        if(gameOver){
+          return} else {
+          //bgmSound.play();
+           snakeX += nextX;
+           snakeY += nextY;
+        }       
 
-        //outof bound hit the wall -return from other side
-        /*    if (snakeX < 0) {
-          snakeX = gridSize - 1;
+     /////end game
+        if (snakeX < -1 ||
+          snakeX > gridSize ||
+          snakeY < -1 ||
+          snakeY > gridSize) {
+            collisionSound.play();
+            bgmSound.stop();
+            gameOver = true;
+            clearInterval(game);
+            startBtn.style.display = 'block';
         }
-        if (snakeX > gridSize - 1) {
-          snakeX = 0;
-        }
-        if (snakeY < 0) {
-          snakeY = gridSize - 1;
-        }
-        if (snakeY > gridSize - 1) {
-          snakeY = 0;
-        } */
-
-        //end game
-        if (
-          snakeX == -1 ||
-          snakeX == gridSize ||
-          snakeY == -1 ||
-          snakeY == gridSize
-        ) {
-          dead.play();
-        }
-        if (
-          snakeX < -3 ||
-          snakeX > gridSize + 3 ||
-          snakeY < -3 ||
-          snakeY > gridSize + 3
-        ) {
-          clearInterval(game);
-        }
-
+       
         //snake bite apple
         if (snakeX == appleX && snakeY == appleY) {
           tailSize++;
           appleX = Math.floor(Math.random() * gridSize);
           appleY = Math.floor(Math.random() * gridSize);
           score++;
-          bite.play();
-          document.getElementById("demo").innerHTML = score;
+          speed += 0.5;
+          biteSound.play();
+          document.getElementById("score").innerHTML = "Score:" + score;
         }
-
+       
         //background draw color
         ctx.fillStyle = "#ddd";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -114,7 +107,7 @@ function game() {
 
           if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
             tailSize = defaultTailSize;
-            document.getElementById("demo").innerHTML = score;
+            document.getElementById("score").innerHTML = score;
             score = 0;
           }
         }
@@ -130,11 +123,13 @@ function game() {
         snakeTrail.push({ x: snakeX, y: snakeY });
         while (snakeTrail.length > tailSize) {
           snakeTrail.shift();
-        }
-      }
+        } 
+    }
+
+    /////keydown event/////
       document.addEventListener("keydown", keyDownEvent);
       function keyDownEvent(e) {
-        run.play();
+        bgmSound.play();
         switch (e.keyCode) {
           case 37:
             nextX = -1;
@@ -154,5 +149,41 @@ function game() {
             break;
         }
       }
-      /*  const btn = document.getElementById("btn");
-      btn.addEventListener("click", game); */
+  
+  /////button event/////
+      const up = document.getElementById('upBtn');
+      const left = document.getElementById('leftBtn');
+      const right = document.getElementById('rightBtn');
+      const down = document.getElementById('downBtn');
+
+  up.addEventListener('click', () => {
+    bgmSound.play();
+    nextX = 0;
+    nextY = -1;
+  })
+  down.addEventListener('click', () => {
+    nextX = 0;
+    bgmSound.play();
+    nextY = 1;
+  })
+  left.addEventListener('click', () => {
+    bgmSound.play();
+    nextX = -1;
+    nextY = 0;
+  })
+  right.addEventListener('click', () => {
+    bgmSound.play();
+    nextX = 1;
+    nextY = 0;
+  })
+
+  ////restart
+  startBtn.addEventListener('click', () => {
+    startBtn.style.display = 'none';   
+    snakeX = 10;
+    snakeY = 10;
+    appleX = 20;
+    appleY = 20;
+    score = 0;
+    gameOver = false;  
+  })
