@@ -36,7 +36,7 @@ function Audio(src) {
       const collisionSound = new Audio("./audios/audios_snakedead.wav");
       const bgmSound = new Audio("./audios/audios_snakebite-bgm.mp3");
       
-      let gridSize = 30;
+      let gridSize = 24;
       let tileSize = 16;
       let nextX = 0;
       let nextY = 0;
@@ -107,7 +107,7 @@ function Audio(src) {
 
           if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
             tailSize = defaultTailSize;
-            document.getElementById("score").innerHTML = score;
+           //
             score = 0;
           }
         }
