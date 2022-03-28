@@ -11,8 +11,12 @@ body {
 .container {
   position: relative;
   background-color: cadetblue;
-  max-width: 500px;
+  max-width: 420px;
+  width: 100%;
   text-align: center;
+}
+#canvas {
+  width: 100%;
 }
  .btn {
         margin: 3px auto;
