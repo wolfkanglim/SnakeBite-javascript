@@ -32,9 +32,9 @@ function Audio(src) {
 }
 
 //////audios
-      const biteSound = new Audio("./audios/snakebite.wav");
-      const collisionSound = new Audio("./audios/snakedead.wav");
-      const bgmSound = new Audio("./audios/snakebgm.wav");
+      const biteSound = new Audio("./audios/audios_snakebite.wav");
+      const collisionSound = new Audio("./audios/audios_snakedead.wav");
+      const bgmSound = new Audio("./audios/audios_snakebite-bgm.mp3");
       
       let gridSize = 30;
       let tileSize = 16;
