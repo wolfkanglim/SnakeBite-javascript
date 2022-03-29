@@ -5,6 +5,7 @@ Test my skills and practice Javascript
 <img src="apple8.png" width="200">
 clone through Github desk for practice
 #
+![sankebite](https://user-images.githubusercontent.com/74490365/160531011-8bde6cb1-2953-4101-89c7-22510c8aaafe.png)
 
 ## Test Play
 ###https://wolfkanglim.github.io/SnakeBite-javascript/
