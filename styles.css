@@ -12,33 +12,33 @@ body {
   position: relative;
   background-color: cadetblue;
   max-width: 420px;
+  max-height: 95%;
   width: 100%;
   text-align: center;
 }
 #canvas {
-  width: 100%;
+  width: 100%;  
+  border: 3px solid black;  
 }
  .btn {
-        margin: 3px auto;
-   height: 40px;
-        color: #fff;
-        background-color: #222;
-        border: 1px solid rgb(253, 251, 251);
-        font-size: 14px;
-        padding: 3px;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-      #score {
-        font-size: 16px;
-      }
+  margin: 3px auto;
+  height: 40px;
+  color: #fff;
+  background-color: #222;
+  border: 1px solid rgb(253, 251, 251);
+  font-size: 14px;
+  padding: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#score {
+  font-size: 16px;
+}
 
 p {
   font-size: 12px;
 }
-  #canvas {    
-    border: 3px solid black;
-  }
+ 
 
   #startBtn {
    position: absolute;
