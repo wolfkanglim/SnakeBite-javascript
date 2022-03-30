@@ -185,5 +185,6 @@ function Audio(src) {
     appleX = 20;
     appleY = 20;
     score = 0;
+    tailSize = defaultTailSize;
     gameOver = false;  
   })
